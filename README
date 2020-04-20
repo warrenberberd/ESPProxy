@@ -1,0 +1,45 @@
+---------------------------------------------------------------------------------------
+-  Description
+---------------------------------------------------------------------------------------
+Just a Very Small HTTP PROXY for using blacklist/whitelist
+
+It open a port (3128 by default) where the HTTP Request can be forwarded, for PROXY
+
+This proxy is mono-thread (esp8266 by design) and is very slow, but's it's low power and VERY small device :)
+For small children usage, it's enough
+
+---------------------------------------------------------------------------------------
+-  Administration of proxy
+---------------------------------------------------------------------------------------
+Administration is done by http GET on port 80 (by default)
+
+Here is some possible interraction with ADMIN side : 
+   http://<ip>/BLACKLIST/ADD/www.site.com : To add a site to the blacklist
+   http://<ip>/BLACKLIST/REMOVE/www.site.com : To remove a site from the blacklist
+   http://<ip>/BLACKLIST/CHECK/www.site.com : To check if a site is in the blacklist
+   http://<ip>/BLACKLIST/DUMP : To dump the "custom" blacklist
+   http://<ip>/BLACKLIST/DIR : To list all the blacklist
+   http://<ip>/BLACKLIST/DOWNLOAD/<url> : To download an external blacklist url [NOT WORKING]
+
+   http://<ip>/WHITELIST/ADD/www.site.com : To add a site to the whitelist
+   http://<ip>/WHITELIST/REMOVE/www.site.com : To remove a site from the whitelist
+   http://<ip>/WHITELIST/CHECK/www.site.com : To check if a site is in the whitelist
+   http://<ip>/WHITELIST/DUMP : To dump the "custom" whitelist
+   http://<ip>/WHITELIST/DIR : To list all the whitelists
+
+   http://<ip>/ACCESSLOGS   : For dumping current access.log
+   http://<ip>/ARCHIVELOG   : To rename current access.log with the current date
+
+   http://<ip>/DIR/<directory>  : For listing directory content (/ is valid)
+
+   http://<ip>/BUFFER/<intValue>   : For setting BUFFER size
+   http://<ip>/TIMEOUT/<intValue>   : For setting default TIMEOUT value
+   http://<ip>/TUNNEL_TIMEOUT/<intValue>   : For setting TUNNEL_TIMEOUT, specific for CONNECT mode (https proxy)
+
+---------------------------------------------------------------------------------------
+-  known bugs
+---------------------------------------------------------------------------------------
+- DOWNLOAD function for blacklist dont work
+    crash in LWIP2 stack when calling "WiFiClientSecure::connect(host,port)
+        seems to crash in BSSL:_run_until: br_ssl_engine_sendrec_buf > WDT trigger
+        it's stange beacause, when i test this in a seperate project, it works...
