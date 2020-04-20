@@ -8,6 +8,7 @@ It open a port (3128 by default) where the HTTP Request can be forwarded, for PR
 This proxy is mono-thread (esp8266 by design) and is very slow, but's it's low power and VERY small device :)
 For small children usage, it's enough
 
+
 ---------------------------------------------------------------------------------------
 -  Administration of proxy
 ---------------------------------------------------------------------------------------
