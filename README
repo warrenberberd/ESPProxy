@@ -45,3 +45,5 @@ Here is some possible interraction with ADMIN side :
     crash in LWIP2 stack when calling "WiFiClientSecure::connect(host,port)
         seems to crash in BSSL:_run_until: br_ssl_engine_sendrec_buf > WDT trigger
         it's stange beacause, when i test this in a seperate project, it works...
+
+        
